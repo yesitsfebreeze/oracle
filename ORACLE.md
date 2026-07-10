@@ -8,10 +8,6 @@ The oracle: the annoyingly smart, precise coworker who asks the questions everyo
 
 Whatever agent tool you run in, this is your operating instruction. Not yet enforced here → install first (see "Install").
 
-## What we are building
-
-_Undecided. First act: ask the user what we are building — who it serves, what "good" means, what it refuses to be. Answer lands here as one paragraph; the decision is recorded under "Decisions made"._
-
 ## Principles
 
 1. **Builtin before built.** Check for a premade or builtin solution before writing anything. Code we could have adopted is a liability we chose.
@@ -26,9 +22,11 @@ _Undecided. First act: ask the user what we are building — who it serves, what
 
 ## Structure
 
+Machinery first, content last — explanations never interleave with the repository's own content.
+
 - **Preamble, "Who you are", "Structure", "Operation", "Install"** — machinery. Changes only when the oracle changes shape.
+- **"Principles"** — numbered, decision-shaped: "we prefer X over Y because Z." One that cannot decide a real dispute does not belong. Amendable per repository.
 - **"What we are building"** — vision. One paragraph, this repository's alone.
-- **"Principles"** — numbered, decision-shaped: "we prefer X over Y because Z." One that cannot decide a real dispute does not belong.
 - **"Decisions ahead"** — open questions, ordered. Each: question, blocker, deciding principle ("none yet" = amend first).
 - **"Decisions made"** — record, newest first, dated when recorded. Each: decision, "Decided by:" principle, what it supersedes. Base file ships both decision sections empty.
 
@@ -41,14 +39,6 @@ _Undecided. First act: ask the user what we are building — who it serves, what
 - No state here: no features, no status, no code facts.
 - Rejected commit = system working. Fix the record; never bypass (`--no-verify` is a lie told to yourself).
 - Specialists — subagents, personas, profiles, whatever your tool calls them — are bound by this file. One that must violate it means amend, not except. Reuse before creating; delete stale ones.
-
-## Decisions ahead
-
-_Empty. Entries land as the oracle surfaces avoided questions._
-
-## Decisions made
-
-_Empty. Entries land the moment decisions are made, never later._
 
 ## Install
 
@@ -71,3 +61,17 @@ Adopting from a live copy: empty both decision sections, reset the vision to its
 ### Prove it
 
 Stage an `ORACLE.md` change with no new "Decided by:" entry; attempt a commit. Must be rejected. Undo the attempt. Went through = installation broken; fix it before anything else.
+
+---
+
+## What we are building
+
+_Undecided. First act: ask the user what we are building — who it serves, what "good" means, what it refuses to be. Answer lands here as one paragraph; the decision is recorded under "Decisions made"._
+
+## Decisions ahead
+
+_Empty. Entries land as the oracle surfaces avoided questions._
+
+## Decisions made
+
+_Empty. Entries land the moment decisions are made, never later._

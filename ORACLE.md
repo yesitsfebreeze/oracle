@@ -59,7 +59,8 @@ The rules of operation:
 
 ### 2026-07-10
 
-- **The oracle is one self-installing file.** Everything — vision, persona, principles, decisions, anatomy, install — lives in `ORACLE.md`; pasting this file into a repository is the entire act of adoption, and the first agent that reads it performs the install, including creating the pointer files tools auto-load. Decided by: "Portable before proprietary" and "Enforced, not remembered." Supersedes: the split across `AGENTS.md`, `INSTALL.md`, `FEATURES.md`, `ROADMAP.md`, `CHANGELOG.md`; feature tracking is dropped — the oracle remembers how and why we act, never what the code currently does.
+- **The repository ships this file and nothing else.** Pointer files (`AGENTS.md`, `CLAUDE.md`, …) and the hook are per-clone install products — created by the installing agent, kept out of history via the builtin `.git/info/exclude`, never committed. Decided by: "Portable before proprietary" — an install product committed becomes a second copy that can drift. Supersedes: committed one-line pointer files.
+- **The oracle is one self-installing file.** Everything — vision, persona, principles, decisions, anatomy, install — lives in `ORACLE.md`; pasting this file into a repository is the entire act of adoption, and the first agent that reads it performs the install. Decided by: "Portable before proprietary" and "Enforced, not remembered." Supersedes: the split across `AGENTS.md`, `INSTALL.md`, `FEATURES.md`, `ROADMAP.md`, `CHANGELOG.md`; feature tracking is dropped — the oracle remembers how and why we act, never what the code currently does.
 - **The oracle is the main session and the default agent wherever the tool has one.** Registration points at this file; it is never copied into a tool-specific format that could drift. Decided by: "Portable before proprietary."
 - **The repository ships the ruling, not the hook.** Enforcement rules are stated declaratively (see "Install"); each installing agent implements them in its own tool's hook mechanism and never commits the implementation. Decided by: "Portable before proprietary."
 - **Rules are enforced at the commit, not remembered by the agent.** Decided by: "Enforced, not remembered."
@@ -83,8 +84,10 @@ At every session start:
 
 ### Steps
 
-1. **Context (rule 4).** Create whatever pointer files your environment auto-loads, if they are missing — each a single line: "Read `ORACLE.md` before acting — it is your operating instruction." `AGENTS.md` covers Codex, OpenCode, pi, and most agents; Claude Code reads `CLAUDE.md` (use the import line `@ORACLE.md`). These pointers are committed; they carry no content of their own.
-2. **Enforcement (rules 1–3).** Implement the checks in your tool's own hook mechanism — whatever runs before or around a commit. If your tool has none, a plain git pre-commit hook in `.git/hooks/` is always available. Your implementation is per-clone and disposable; the ruling is the contract. Do not commit it — that would ship one tool's dialect as if it were the rule.
+Nothing you create below is ever committed: the repository ships this file and nothing else. Keep your install products out of history with the builtin `.git/info/exclude` (never a committed `.gitignore`).
+
+1. **Context (rule 4).** Create whatever pointer file your environment auto-loads, if it is missing — a single line: "Read `ORACLE.md` before acting — it is your operating instruction." `AGENTS.md` covers Codex, OpenCode, pi, and most agents; Claude Code reads `CLAUDE.md` (use the import line `@ORACLE.md`). Add each pointer to `.git/info/exclude`.
+2. **Enforcement (rules 1–3).** Implement the checks in your tool's own hook mechanism — whatever runs before or around a commit. If your tool has none, a plain git pre-commit hook in `.git/hooks/` is always available. Your implementation is per-clone and disposable; the ruling is the contract.
 3. **Default agent (if your tool has the concept).** Register the oracle as the default persona, pointed at this file.
 
 ### Prove it

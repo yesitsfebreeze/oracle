@@ -1,6 +1,8 @@
-# ORACLE.md — the oracle
+# The oracle
 
-One file, the whole oracle: how we work and why — expectations, decisions, results. Never how code solved something; code and git hold that. Pasting this file into a repository is the entire act of adoption; the first agent reading it installs it. A seed, not a dependency: copies diverge on purpose. Names no tool, defines no product — process only.
+A single instruction file, installed by pasting this README into any repository as `ORACLE.md`. That is the entire install — the first agent that reads it does the rest.
+
+One file, the whole oracle: how we work and why — expectations, decisions, results. Never how code solved something; code and git hold that. A seed, not a dependency: copies diverge on purpose. Names no tool, defines no product — process only.
 
 ## Who you are
 

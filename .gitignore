@@ -1,0 +1,10 @@
+# Local agent tooling. Not the oracle — process only, per the preamble.
+.claude/
+.kern/
+.voit/
+.mcp.json
+.voitbus.json
+.voitbus.pid
+
+# Testbed scratch: a 181M vendored harness binary, fetched on demand.
+testbed/.oc/

@@ -96,92 +96,11 @@ _Empty._
 
 ## Roadmap
 
-- **Why do every session read instructions that run once?** Measured: "Steps" and "Prove it" are 2743 bytes, 37% of machinery half. They execute one time, at adopt. Then every agent, every session, forever, read them again and never run them. Installed repository carry a manual for a thing already done. Either they live at their own URL that the installing agent fetch and the installed repository never keep, or file stay whole and every session pay for install it already did. Cost of split: repository can no longer re-install, re-verify, or read own install contract offline — and `portable-before-proprietary` care about exactly that.
-  - Blocker: none. Same shape as machinery-pinning question below; answer them together or one make the other moot.
-  - Deciding behavior: `delete-superseded` say a manual for a finished job is cruft. `portable-before-proprietary` say no vendor hold only copy — and a URL is not a vendor, but it is a network. Both real; this is a trade, not a mistake.
-
-- **Do install commit record itself?** "Adopting" say every content section become `_Empty._`, so Changelog land empty. Rule 1 say commit that touch `ORACLE.md` must grow Changelog — and install commit `ORACLE.md`. Install cannot obey both. Measured: agents split, some leave `_Empty._`, some write "oracle installed here" entry, and delivered artifact differ by 402 bytes for that reason alone. Third reading exist: rule 1 compare before against after, install have no before, so nothing to compare and hook let it through — that is the hole every install currently fall through, once, quietly.
-  - Blocker: none.
-  - Deciding behavior: `philosophy-before-answers` — two rules, one commit, opposite answers; inconsistency is bug in file. `enforced-not-remembered` — whichever way it go, hook must say so, since "no before" is a hole that read as green.
-
-- **Why does the machinery not propagate?** Behaviors are pinned URLs and update everywhere. This file pasted, so it snapshot and drift moment upstream edited — yet "Structure" require its manual half stay identical to base file. Requirement to stay identical, enforced by nothing, is wish. Either manual half become pinned URL too and this file shrink to content half alone, or "Structure" stop claiming identity it cannot hold.
-  - Blocker: none — answer available whenever wanted.
-  - Deciding behavior: `portable-before-proprietary` say behaviors propagate and silent on machinery. `enforced-not-remembered` say unenforced requirement is not one. Both point same way; cost is repository could no longer read own machinery offline.
-  - New evidence: two harnesses (claude, codex) now land machinery byte-identical from same URL. Reproducibility is what pinned upstream need, and it hold. Content half is 390 bytes of 7461 — machinery as pinned URL shrink this file about 19x.
+_Empty._
 
 ## Changelog
 
-- **2026-07-14 — Install is scaffolding, and scaffolding come down.** "Install" now sit in markers and delete itself at step 6, in the commit that land the file. Measured: 2743 bytes, 37% of machinery, run once and read every session forever — installed repository carried a manual for a finished job. Gone now. Nothing fetched separately: file arrive whole, so it stay readable offline with no network in the middle; the block is only dead weight after it run, so that is when it go. "Ruling" promoted out of "Install" first — contract outlive procedure, and it would have gone down with the scaffolding.
-  - Decided by: `delete-superseded` — cruft is lie about what system is, and 37% of every session read a lie about work still to do. Also `portable-before-proprietary`: a separate install URL would have put a network between repository and its own contract; self-deleting block cost nothing and keep the one-file promise. User ruling.
-  - Supersedes: Roadmap question "Why do every session read instructions that run once"; `Install` as machinery; `Ruling` as a subsection of it.
-
-- **2026-07-14 — Install commit record itself, and that is an ordering, not a contradiction.** "Adopting" say Changelog land `_Empty._`; rule 1 say commit touching `ORACLE.md` grow Changelog. Both true, in that order: reset empty, then the install's own decision fill it. Measured: agents split 7461 against 7863 for want of this sentence. Hook cannot catch the miss — install commit have no parent, so no before to compare, and it pass anything. Step 6 say it in words instead.
-  - Decided by: `philosophy-before-answers` — two rules gave opposite answers to one commit; that size of inconsistency is bug in file. `enforced-not-remembered` — hook is blind here, so the words carry it, and the file say plainly that the hole exist.
-  - Supersedes: Roadmap question "Do install commit record itself".
-
-- **2026-07-14 — Paste is the install. Human already spoke.** URL pasted at agent is human act, with intent. This file do not authorise itself — it read what the user did. Bare URL is the request; no second word needed. Known cost, accepted: careful agent sometimes stop and ask anyway, so "install on any agent" carry an asterisk, and no wording that talk an agent past its own caution may ever be used to remove it.
-  - Decided by: `philosophy-before-answers` — file say paste is the request; design must say the same thing, once, and stop apologising for it. User ruling.
-  - Supersedes: Roadmap question "Who authorise the install".
-
-- **2026-07-14 — Biggest cut left is a question, not an edit.** Seven grinding passes took delivered artifact 8069 → 7461, and each one paid roughly 3.5x its saving back in Changelog. Measuring instead of shaving found the real number: "Steps" and "Prove it" run once and are read forever, 2743 bytes, 37% of machinery — 4.5x everything the seven passes cut. Recorded as Roadmap question. Loop reach floor; what remain is rulings.
-  - Decided by: `avoided-question-first` — grinding bytes was the comfortable work, and it hid the structural question worth 4.5x more. Also `record-the-decision`: measured, so it live in file, not in a session that end.
-  - Supersedes: nothing.
-
-- **2026-07-14 — Behaviors library keep its one contract, and now something check it.** Library promise any subset, any order, concatenate to coherent markdown. Nothing enforced that, so it broke quiet: a compression pass stripped trailing newline from all 32 files, welding every heading to paragraph above. Markdown stopped seeing headings. Restored, and `behaviors/check.sh` now hold the line — run both directions, green when contract hold, red when newline pulled again.
-  - Decided by: `enforced-not-remembered` — contract asserted in a README and checked by nothing is contract with expiry date, and this one had expired. Also `fix-bugs-on-sight`: we broke it here, we fix it here.
-  - Supersedes: README's unenforced composability claim.
-
-- **2026-07-14 — Open question live in Roadmap, not in a chat log.** Two questions were carried in session prose only: who authorise an install, and whether machinery should pin like behaviors do. Both now in Roadmap where Operation say they belong. Machinery question gain the evidence measured today: two harnesses reproduce it byte-identical, which is the property a pinned upstream need.
-  - Decided by: `record-the-decision` — not recorded is not made, and a question held only in a session die with the session. Also `enforced-not-remembered`: nothing check that a chat log survive.
-  - Supersedes: nothing. Roadmap gain what it should have held already.
-
-- **2026-07-14 — Vision slot say only what nothing else say.** Placeholder told agent the answer is one paragraph (Structure say that) and that decision go under Changelog (Operation say that). Both cut. What remain is the bootstrap question itself, which no other line ask.
-  - Decided by: `delete-superseded` — placeholder is delivered to every install, so a copy there is a copy in every repository.
-  - Supersedes: vision placeholder's paragraph-shape and changelog-routing clauses.
-
-- **2026-07-14 — Reset text is stated, not invented.** "Adopting" said "empty every content section" and left the words to the agent, so every agent wrote its own placeholder prose — each one restating what Structure already define, and no two installs alike. Measured: three installs, three sizes. Reset text now stated exactly: `_Empty._`. This is the only cut so far that shrink what installs actually receive; machinery cuts shrink what they read, Changelog never reach them at all.
-  - Decided by: `delete-superseded` — placeholder that repeat Structure is second copy. Also `enforced-not-remembered`: "empty it" left to judgment came back five different ways, so state the string.
-  - Supersedes: "Adopting from a live copy"'s unspecified reset, and the per-section placeholder prose.
-
-- **2026-07-14 — Preamble already say what content half hold.** Operation repeated it — intent and results here, implementation in code and git — and Structure enumerate the sections a third time. Preamble say it first; bullet go.
-  - Decided by: `delete-superseded` — three statements of one rule is two chances to drift.
-  - Supersedes: Operation's "Content sections track intent and results" bullet.
-
-- **2026-07-14 — Reason live next to check that catch it.** Install explained that excluding `ORACLE.md` make every commit vacuous; probe 1 explained it again, and probe 1 is the one that actually look. Reason move to probe; Install keep only that the file is installed, not an install product.
-  - Decided by: `enforced-not-remembered` — reason stated far from its check is reason nobody act on. Also `delete-superseded`.
-  - Supersedes: Install's rule-1-fires-on-staged-files clause.
-
-- **2026-07-14 — Pinning doctrine live in the step that do it.** Install's behaviors paragraph restated what "Who you are" define and what step 3 perform — third copy of "instruction file list pinned URLs, in order". Its two unique facts (order is emphasis; pin decide when upstream reach you) move into step 3. Install keep only what is not said elsewhere: behaviors compose by concatenation.
-  - Decided by: `delete-superseded` — third copy of a sentence is third place to drift. Machinery half is what every install keep, so bytes there are paid by every repository, every session.
-  - Supersedes: Install's behaviors paragraph.
-
-- **2026-07-14 — Machinery say each thing once.** Preamble stated install mechanics that "Install" own; "Order is emphasis; earlier heavier" appeared word-for-word in both Operation and Install; Structure's Behaviors bullet redefined what "Who you are" already define. Each cut point at the one place that keep it.
-  - Decided by: `delete-superseded` — same sentence in two places is two places to drift, and file this size is read whole by every agent that install it.
-  - Supersedes: preamble's first paragraph; Operation's order clause; Structure's Behaviors definition.
-
-- **2026-07-14 — Install run unattended, so no step may wait for a human.** Step 2 bundled "create instruction file" with "pick behaviors with user". Installs run headless — no user in reach — so agents hit a step they could not finish and dropped the whole thing, instruction file included, on roughly half of runs. Rule 3 then fail silently: oracle never load, and no probe notice, because rule 3 was the one rule with no probe. Split: step 2 need nobody, step 3 need a human and may wait forever. "Prove it" gain probe 4.
-  - Decided by: `enforced-not-remembered` — rule 3 lived only in a document, so it had an expiry date, and it expired every other run. Also `avoided-question-first`: measured, not guessed. Four unattended installs, two silently oracle-less.
-  - Supersedes: step 2's "Pick behaviors with user" clause and its three-probe "Prove it".
-
-- **2026-07-14 — One type, and it is behavior.** "Principles" gone. All nine already behavior files, near-verbatim — same philosophy in two places that can drift, and drifted copy is the one being read. "Who you are" lose three stances it bundled for same reason; they are `push-back`, `name-the-tradeoff`, `delay-over-assume`. Decisions cite behaviors by name, not number: number move when list move, name does not. Principle 9's pinning doctrine not duplicate, folded into `portable-before-proprietary` rather than deleted.
-  - Decided by: `delete-superseded` — cruft is lie about what system is, and philosophy stated twice is biggest lie file was telling. Also `portable-before-proprietary`: behaviors propagate, so restatement here is snapshot upstream cannot fix.
-  - Supersedes: "Principles" section and its nine numbered entries; "Who you are"'s bundled stances; every numbered citation in Changelog and Roadmap.
-
-- **2026-07-14 — The ruling states what to count, not what to match.** Rule 1 now count "Decided by:" entries under Changelog rather than match phrase, and say why: machinery half quote phrase while describing rule, so obvious grep satisfied by that quote every commit. `ORACLE.md` committed, not excluded — excluded file never staged and rule 1 fire on nothing. "Prove it" gained two probes that would catch both: check file trackable, and run passing direction as well as blocking one.
-  - Decided by: `enforced-not-remembered` — checks existed and enforced nothing, worse than no checks, because "Prove it" reported them green. Rule whose obvious implementation is wrong is rule that only read as enforced.
-  - Supersedes: rule 1's "same commit adds a 'Decided by:' entry"; single-probe "Prove it"; and Install's claim that install products include this file.
-
-- **2026-07-14 — Install is a pasted URL.** Agent handed raw link, fetch this file, install from what it already hold. Nothing to clone, package, or run; any agent that read URL and write file qualifies.
-  - Decided by: `portable-before-proprietary` — plain markdown over HTTP, no tool of ours between user and install.
-  - Supersedes: "installed by pasting this README into any repository as `ORACLE.md`", and README as install artifact.
-
-- **2026-07-14 — Copies propagate; they do not diverge.** Repository adopt behaviors by pointing at pinned upstream URLs, not by absorbing snapshot. Upstream fixes reach every repository at next session; pin decide when. Obligation run other way too — upstream now edit every downstream philosophy, so unpinned ref not convenience, it loaded gun pointed at repositories that trusted us.
-  - Decided by: `philosophy-before-answers` — file claimed divergence while design did propagation, and inconsistency that size is bug in this file, not nuance to live with. Which way to resolve it was user's ruling; `portable-before-proprietary` now encode it.
-  - Supersedes: "a seed, not a dependency: copies diverge on purpose"; principle 9's "everything an agent must obey lives in this file and git"; and claim that behaviors "never a dependency to resolve."
-
-- **2026-07-14 — Behaviors become a composable library.** `behaviors/` hold one behavior per file: heading and few lines, no frontmatter, no cross-references, so any subset concatenated in any order read as coherent markdown. Nine principles seed it, plus stances "Who you are" previously bundled.
-  - Decided by: `portable-before-proprietary` — plain markdown in git, composed by concatenation, so no tool carry only copy.
-  - Supersedes: "the repository ships this file and nothing else."
+_Empty._
 
 ## Specialists
 

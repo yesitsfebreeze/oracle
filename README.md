@@ -14,7 +14,7 @@ Install this in this repo: https://raw.githubusercontent.com/yesitsfebreeze/orac
 
 That is the whole install. Nothing to clone, package, or run — the link is a copy of the oracle, and any agent that read a URL and write a file can do it.
 
-It land `ORACLE.md` at your repository root, wire your tool's auto-loaded instruction file to read it, install a pre-commit hook, prove all of it, then cut its own install section — that section ran once, and an installed repository carry no manual for a job already done.
+It land `ORACLE.md` at your repository root, wire your tool to read it every session (instruction file, plus session hook where your tool have one), install a pre-commit hook, prove all of it, then cut its own install section — that section ran once, and an installed repository carry no manual for a job already done.
 
 Pin the ref (`v1`, or a commit SHA) rather than `main`. Both propagate; a pin propagate when you decide, `main` the moment someone push.
 

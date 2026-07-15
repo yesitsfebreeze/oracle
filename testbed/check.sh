@@ -183,8 +183,24 @@ install_e2e() {
   echo
   check "ORACLE.md landed at repo root"            test -f ORACLE.md
   check "auto-loaded instruction file created"     sh -c '[ -f AGENTS.md ] || [ -f CLAUDE.md ]'
+  check "instruction file names ORACLE.md (rule 3)" sh -c 'grep -qs "ORACLE.md" AGENTS.md CLAUDE.md'
   check "pre-commit hook installed (ruling 1-2)"   test -f .git/hooks/pre-commit
   check "install products excluded from history"   grep -qs "AGENTS.md\|CLAUDE.md" .git/info/exclude
+
+  # Rule 3 demands enforcement wherever the tool has a session hook mechanism.
+  # Claude has one; the other harnesses are instruction-file-only, so the check
+  # is scoped to the harness that can satisfy it rather than demanded of all.
+  if [ "$HARNESS" = claude ]; then
+    check "session-start hook wired (rule 3 enforced)" \
+      sh -c 'grep -qs "SessionStart" .claude/settings.local.json'
+
+    # The hook config is an install product: per-clone, rebuilt by any install.
+    # settings.local.json is the variant the tool already keeps out of history;
+    # settings.json is the shared one, and committing it puts a per-clone config
+    # into everyone's history — the second copy that drifts.
+    check "session hook stays out of history" \
+      sh -c '[ -f .claude/settings.local.json ] && ! git ls-files --error-unmatch .claude/settings.local.json >/dev/null 2>&1'
+  fi
 
   # ORACLE.md is machinery whole. A vision heading or an `_Empty._` placeholder
   # means the agent reproduced the old shape, where content lived in the file.
@@ -236,6 +252,25 @@ install_e2e() {
   # never committed, which dirties the artifact the byte measurements read.
   git reset -q 2>/dev/null
   git checkout -- ORACLE.md 2>/dev/null
+  if grep -q '<!-- probe -->' ORACLE.md 2>/dev/null; then
+    grep -v '<!-- probe -->' ORACLE.md > "$WORK/.clean" && mv "$WORK/.clean" ORACLE.md
+  fi
+
+  # The other direction: the same edit plus its entry must go through. A hook
+  # that blocks everything is as broken as one that blocks nothing, and only
+  # running both directions says which one this install built. The entry cites
+  # `the oracle` — valid per ruling 1 because the commit moves ORACLE.md itself.
+  printf '\n<!-- probe -->\n' >> ORACLE.md
+  printf -- '- probe: install check. Decided by: the oracle.\n' >> CHANGELOG.md
+  git add -f ORACLE.md CHANGELOG.md >/dev/null 2>&1
+  if git commit -q -m "probe: recorded ORACLE.md edit" >/dev/null 2>&1; then
+    echo "  PASS  ruling 1 passes a recorded ORACLE.md change"; pass=$((pass+1))
+    git reset -q --hard HEAD~1 2>/dev/null
+  else
+    echo "  FAIL  ruling 1 passes a recorded ORACLE.md change"; fail=$((fail+1))
+    git reset -q 2>/dev/null
+    git checkout -- ORACLE.md CHANGELOG.md 2>/dev/null
+  fi
   if grep -q '<!-- probe -->' ORACLE.md 2>/dev/null; then
     grep -v '<!-- probe -->' ORACLE.md > "$WORK/.clean" && mv "$WORK/.clean" ORACLE.md
   fi

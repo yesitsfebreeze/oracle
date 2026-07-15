@@ -20,11 +20,9 @@ Pin the ref (`v1`, or a commit SHA) rather than `main`. Both propagate; a pin pr
 
 ## What you get
 
-`ORACLE.md`: machinery first, your content last, split by `---`.
+`ORACLE.md`, and it is machinery whole — who the oracle is, how it operate, and the ruling: a commit that change what you are building must grow `CHANGELOG.md`, or it is blocked. A decision not recorded is a decision not made.
 
-Machinery is identical in every install — who the oracle is, how it operate, and the ruling: a commit that touch `ORACLE.md` must grow the changelog, or it is blocked. A decision not recorded is a decision not made.
-
-Content is yours alone — vision, features, roadmap, changelog, specialists. This repository ship it empty.
+It carry none of your answers, so it stay identical in every install. Those live beside it, one kind per file — `VISION.md`, `FEATURES.md`, `ROADMAP.md`, `CHANGELOG.md`, `SPECIALISTS.md` — each written the moment it first hold something, not laid down empty at install.
 
 ## Behaviors
 

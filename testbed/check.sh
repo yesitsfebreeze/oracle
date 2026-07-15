@@ -182,15 +182,28 @@ install_e2e() {
 
   echo
   check "ORACLE.md landed at repo root"            test -f ORACLE.md
-  check "content half reset to undecided vision"   grep -q "Undecided" ORACLE.md
   check "auto-loaded instruction file created"     sh -c '[ -f AGENTS.md ] || [ -f CLAUDE.md ]'
   check "pre-commit hook installed (ruling 1-2)"   test -f .git/hooks/pre-commit
   check "install products excluded from history"   grep -qs "AGENTS.md\|CLAUDE.md" .git/info/exclude
 
-  # Ruling 1 must bite on a real edit, not on the file merely containing the
-  # string "Decided by:" — the machinery half quotes it while describing the rule.
-  check "hook is not satisfied by the file quoting its own rule" \
-    sh -c '[ -f .git/hooks/pre-commit ] && grep -q "Changelog" .git/hooks/pre-commit'
+  # ORACLE.md is machinery whole. A vision heading or an `_Empty._` placeholder
+  # means the agent reproduced the old shape, where content lived in the file.
+  check "ORACLE.md carries no content of its own" \
+    sh -c '[ -f ORACLE.md ] && ! grep -q "^## What we are building\|_Empty\._" ORACLE.md'
+
+  # Content files appear when they first hold something. An install that lays
+  # down empty scaffolds puts a lie about what was decided into every session.
+  check "no empty content scaffold laid down" \
+    sh -c '! [ -f VISION.md ] && ! [ -f FEATURES.md ] && ! [ -f ROADMAP.md ] && ! [ -f SPECIALISTS.md ]'
+
+  # Step 6: the install is a decision, and CHANGELOG.md is what first records it.
+  check "install recorded itself in CHANGELOG.md" \
+    sh -c '[ -f CHANGELOG.md ] && grep -q "Decided by:" CHANGELOG.md'
+
+  # Ruling 1 must count entries, not grep for "Decided by:" — a changelog holds
+  # every past entry, so a grep goes green from the second commit onward forever.
+  check "hook keys on CHANGELOG.md" \
+    sh -c '[ -f .git/hooks/pre-commit ] && grep -qi "CHANGELOG" .git/hooks/pre-commit'
 
   # Ruling 1 can only fire on a file git actually stages. If the install excluded
   # ORACLE.md, every commit below is vacuous — nothing staged, nothing checked.
@@ -204,9 +217,10 @@ install_e2e() {
   check "Ruling survived the scaffolding removal" \
     sh -c 'grep -q "^## Ruling" ORACLE.md'
 
-  # Ruling 1 must actually bite: an ORACLE.md edit with no Changelog entry is rejected.
-  # "Prove it": the rejection must come from the hook. A commit that fails because
-  # nothing was staged is not the hook working — it is the check lying.
+  # Ruling 1 must actually bite: an ORACLE.md edit that adds no new "Decided by:"
+  # entry to CHANGELOG.md is rejected. "Prove it": the rejection must come from the
+  # hook. A commit that fails because nothing was staged is not the hook working —
+  # it is the check lying.
   printf '\n<!-- probe -->\n' >> ORACLE.md
   git add -A >/dev/null 2>&1
   git add -f ORACLE.md >/dev/null 2>&1
